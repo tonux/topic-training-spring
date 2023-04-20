@@ -18,7 +18,7 @@ public class WalletService {
     }
 
     // create wallet
-
+/*
     public void createWallet(Wallet wallet){
         //verify if wallet exists by phone number
         Wallet walletResponse = walletRepository.findByUserByPhone("770000000");
@@ -29,12 +29,25 @@ public class WalletService {
 
         //call send notification service
     }
-
+*/
     //TODO:  get all wallets
+    public void getAllWallets(){
+        walletRepository.findAll();
+    }
+
 
     //TODO: get wallet by id
+    public void getWalletById(Long id){
+        walletRepository.findById(id);
+    }
 
     //TODO: update wallet
+    public void updateWallet(Wallet wallet){
+        walletRepository.save(wallet);
+    }
 
     //TODO: delete wallet
+    public void deleteWallet(Long id){
+        walletRepository.deleteById(id);
+    }
 }
