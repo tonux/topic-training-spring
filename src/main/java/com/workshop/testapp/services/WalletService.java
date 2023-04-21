@@ -30,23 +30,23 @@ public class WalletService {
         //call send notification service
     }
 */
-    //TODO:  get all wallets
+    //Get all wallets
     public void getAllWallets(){
         walletRepository.findAll();
     }
 
 
-    //TODO: get wallet by id
+    //Get wallet by id
     public void getWalletById(Long id){
         walletRepository.findById(id);
     }
 
-    //TODO: update wallet
+    //Update wallet
     public void updateWallet(Wallet wallet){
         walletRepository.save(wallet);
     }
 
-    //TODO: delete wallet
+    //Delete wallet
     public void deleteWallet(Long id){
         walletRepository.deleteById(id);
     }
