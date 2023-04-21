@@ -13,29 +13,26 @@
     <th>Phone</th>
     <th>Email</th>
     <th>Wallets</th>
+    <th></th>
   </tr>
-  <tr>
-    <td>test</td>
-    <td>test</td>
-    <td>test</td>
-    <td>test</td>
-    <td>test</td>
-  </tr>
-  <tr>
-  <td>test</td>
-  <td>test</td>
-  <td>test</td>
-  <td>test</td>
-  <td>test</td>
-</tr>
 
   <tr th:each="user : ${users}">
     <td th:text="${user.id}"></td>
-    <td th:text="${user.name}"></td>
+    <td></td>
     <td th:text="${user.phone}"></td>
     <td th:text="${user.email}"></td>
-    <td th:text="${user.wallets}"></td>
+    <td></td>
+    <td>
+
+      <a th:href="@{wallets/user/{id}(id=${user.id})}">Wallets</a>
+      <a th:href="@{/edit/{id}(id=${user.id})}">Edit</a>
+      <a th:href="@{/delete/{id}(id=${user.id})}">Delete</a>
+    </td>
   </tr>
 </table>
+
+<form th:action="@{/new}" method="get">
+    <button type="submit">Add User</button>
+</form>
 </body>
 </html>

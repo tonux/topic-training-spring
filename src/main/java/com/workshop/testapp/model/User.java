@@ -23,7 +23,6 @@ public class User {
 
     public User() {
     }
-
     public User(String phone, String email) {
         this.phone = phone;
         this.email = email;
@@ -59,5 +58,10 @@ public class User {
 
     public void setWallets(List<Wallet> wallets) {
         this.wallets = wallets;
+    }
+
+    public void copy(User userForm) {
+        this.setPhone(userForm.getPhone());
+        this.setEmail(userForm.getEmail());
     }
 }

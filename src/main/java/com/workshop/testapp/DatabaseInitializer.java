@@ -25,7 +25,7 @@ public class DatabaseInitializer {
     @PostConstruct
     public void init() {
         //create a user
-        User user = new User("770000000", "Doe@gmail.com");
+        User user = new User("770000000", "medoune@gmail.com");
         userRepository.save(user);
 
         User userResponse = userRepository.findByPhone("770000000");

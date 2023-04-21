@@ -1,7 +1,13 @@
 package com.workshop.testapp.services;
 
+import com.workshop.testapp.model.User;
 import com.workshop.testapp.repositories.UserRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
+@Service
 public class UserService {
 
     private final UserRepository userRepository;
@@ -12,13 +18,13 @@ public class UserService {
     }
 
     //create user
-    public void createUser(String phone) {
-        userRepository.findByPhone(phone);
+    public void createUser(User user) {
+        userRepository.save(user);
     }
 
     //get all users
-    public void getAllUsers() {
-        userRepository.findAll();
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     //update user by id
@@ -27,8 +33,9 @@ public class UserService {
     }
 
     //get user by id
-    public void getUserById(Long id) {
-        userRepository.findById(id);
+    public User getUserById(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        return userOptional.orElse(null);
     }
 
     //get user by phone
@@ -41,7 +48,14 @@ public class UserService {
         userRepository.findByEmail(email);
     }
 
+    public void deleteUser(Long id) {
 
+        //find user by id
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        userRepository.delete(user);
+    }
 
-
+    public void updateUser(User user) {
+        userRepository.save(user);
+    }
 }
