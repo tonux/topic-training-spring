@@ -18,6 +18,12 @@ public class UserController {
         this.userService = userService;
     }
 
+    //test
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
+
     //Afficher la lister des utilisateurs
     @GetMapping("/list")
     public String list(Model model) {
