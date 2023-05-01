@@ -2,10 +2,10 @@ TODO :
 - [x] Continuer la partie Spring Data
 - [x] Ajouter la dépendence de Thymeleaf
 - [x] Ajouter le controller UserContoller avec les méthodes suivantes :
-    - [ ] lister les utilisateurs
-    - [ ] afficher le formulaire d'ajout d'un utilisateur
-    - [ ] ajouter un utilisateur
-    - [ ] afficher le formulaire de modification d'un utilisateur
-    - [ ] modifier un utilisateur
-    - [ ] supprimer un utilisateur
+    - [x] lister les utilisateurs
+    - [x] afficher le formulaire d'ajout d'un utilisateur
+    - [x] ajouter un utilisateur
+    - [x] afficher le formulaire de modification d'un utilisateur
+    - [x] modifier un utilisateur
+    - [x] supprimer un utilisateur
 - [x] Creer la page user-list.html et user-form.html
