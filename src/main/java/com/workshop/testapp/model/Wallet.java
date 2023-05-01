@@ -69,4 +69,13 @@ public class Wallet {
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
+
+    public Wallet orElseThrow(Object walletNotFound) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void copy(Wallet walletForm) {
+        this.setName(walletForm.getName());
+        this.setBalance(walletForm.getBalance());
+    }
 }

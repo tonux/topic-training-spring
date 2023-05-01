@@ -10,12 +10,9 @@ import java.util.List;
 @Service
 public class WalletService {
 
-    private UserRepository userRepository;
     private final WalletRepository walletRepository;
 
-    public WalletService(UserRepository userRepository,
-                         WalletRepository walletRepository) {
-        this.userRepository = userRepository;
+    public WalletService(WalletRepository walletRepository) {
         this.walletRepository = walletRepository;
     }
 
@@ -23,21 +20,9 @@ public class WalletService {
     public void createWallet(Wallet wallet) {
         walletRepository.save(wallet);
     }
-/*
-    public void createWallet(Wallet wallet){
-        //verify if wallet exists by phone number
-        Wallet walletResponse = walletRepository.findByUserByPhone("770000000");
-        if(walletResponse != null){
-            throw new RuntimeException("Wallet already exists");
-        }
-        walletRepository.save(wallet);
 
-        //call send notification service
-    }
-*/
     //Get all wallets
     public List<Wallet> getAllWallets(){
-        walletRepository.findAll();
         return walletRepository.findAll();
     }
 
