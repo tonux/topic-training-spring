@@ -31,11 +31,9 @@
         <td th:text="${wallet.name}"></td>
         <td th:text="${wallet.balance}"></td>
         <td>
-            <a class="btn btn-primary" th:href="@{/transactions/{WalletId}(WalletId=${wallet.id})}">Transactions</a>
+            <a class="btn btn-primary" th:href="@{/transactions/{id}(id=${wallet.id})}">Transactions</a>
         </td>
         <td>
-
-
             <a class="btn btn-secondary" th:href="@{/editWallet/{WalletId}(WalletId=${wallet.id})}">Edit</a>
             <a class="btn btn-danger" th:href="@{/deleteWallet/{WalletId}(WalletId=${wallet.id})}">Delete</a>
         </td>
