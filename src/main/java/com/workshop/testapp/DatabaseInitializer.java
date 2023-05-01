@@ -1,5 +1,6 @@
 package com.workshop.testapp;
 
+import com.workshop.testapp.model.Transaction;
 import com.workshop.testapp.model.User;
 import com.workshop.testapp.model.Wallet;
 import com.workshop.testapp.repositories.TransactionRepository;
@@ -27,7 +28,7 @@ public class DatabaseInitializer {
     public void init() {
 
         //create a user
-        User user = new User("771331206", "medounesibygeorgesbald2@gmail.com");
+        User user = new User("Médoune Siby Georges Baldé","771331206", "medounesibygeorgesbald2@gmail.com");
         userRepository.save(user);
         User userResponse = userRepository.findByPhone("771331206");
 
@@ -44,7 +45,7 @@ public class DatabaseInitializer {
         wallet1.setUser(userResponse);
         walletRepository.save(wallet1);
 
-        User user2 = new User("7777777777", "test@gmail.com");
+        User user2 = new User("test","7777777777","test@gmail.com");
         userRepository.save(user2);
         User userResponse2 = userRepository.findByPhone("7777777777");
 
@@ -52,6 +53,11 @@ public class DatabaseInitializer {
         wallet2.setUser(userResponse2);
         walletRepository.save(wallet2);
 
+
+        //create a transaction
+        Transaction transaction = new Transaction( "Achat de crédit", 1000.0, java.time.LocalDate.now());
+        transaction.setWallet(wallet);
+        transactionRepository.save(transaction);
 
 
 

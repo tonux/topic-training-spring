@@ -47,12 +47,13 @@
     <tbody>
     <tr th:each="user : ${users}">
       <td th:text="${user.id}"></td>
-      <td></td>
+      <td th:text="${user.name}"></td>
       <td th:text="${user.phone}"></td>
       <td th:text="${user.email}"></td>
-      <td></td>
       <td>
         <a class="btn btn-primary" th:href="@{wallets/user/{id}(id=${user.id})}">Wallets</a>
+      </td>
+      <td>
         <a class="btn btn-secondary" th:href="@{/edit/{id}(id=${user.id})}">Edit</a>
         <a class="btn btn-danger" th:href="@{/delete/{id}(id=${user.id})}">Delete</a>
       </td>
