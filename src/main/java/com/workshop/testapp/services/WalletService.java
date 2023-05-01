@@ -5,40 +5,33 @@ import com.workshop.testapp.repositories.UserRepository;
 import com.workshop.testapp.repositories.WalletRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WalletService {
 
-    private UserRepository userRepository;
     private final WalletRepository walletRepository;
 
-    public WalletService(UserRepository userRepository,
-                         WalletRepository walletRepository) {
-        this.userRepository = userRepository;
+    public WalletService(WalletRepository walletRepository) {
         this.walletRepository = walletRepository;
     }
 
     // create wallet
-/*
-    public void createWallet(Wallet wallet){
-        //verify if wallet exists by phone number
-        Wallet walletResponse = walletRepository.findByUserByPhone("770000000");
-        if(walletResponse != null){
-            throw new RuntimeException("Wallet already exists");
-        }
+    public void createWallet(Wallet wallet) {
         walletRepository.save(wallet);
-
-        //call send notification service
     }
-*/
+
     //Get all wallets
-    public void getAllWallets(){
-        walletRepository.findAll();
+    public List<Wallet> getAllWallets(){
+        return walletRepository.findAll();
     }
 
 
     //Get wallet by id
-    public void getWalletById(Long id){
-        walletRepository.findById(id);
+    public Wallet getWalletById(Long id){
+        Wallet wallet = walletRepository.findById(id).orElse(null);
+        return wallet;
+
     }
 
     //Update wallet
@@ -50,4 +43,16 @@ public class WalletService {
     public void deleteWallet(Long id){
         walletRepository.deleteById(id);
     }
+
+    public List<Wallet> getUserWalletsById(Long id) {
+        List walletList = walletRepository.findAllById(id);
+        return walletList;
+    }
+
+    public List<Wallet> getUserWalletsByUserId(Long id) {
+        List walletList = walletRepository.findAllByUserId(id);
+        return walletList;
+    }
+
+
 }

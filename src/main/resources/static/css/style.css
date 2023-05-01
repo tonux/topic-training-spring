@@ -1,0 +1,36 @@
+body {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+table {
+    background-color: #fff;
+    color: #1e1e1e;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #1e1e1e;
+}
+th {
+    background-color: #ff9f43;
+    color: #1e1e1e;
+    font-weight: bold;
+}
+a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+}
+button {
+    background-color: #ff9f43;
+    color: #1e1e1e;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+button:hover {
+    background-color: #1e1e1e;
+    color: #ff9f43;
+    cursor: pointer;
+}

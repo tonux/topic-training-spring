@@ -12,6 +12,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(nullable = false)
+    private String name;
     @Column(nullable = false, unique = true, name = "phone_number")
     private String phone;
 
@@ -23,8 +25,8 @@ public class User {
 
     public User() {
     }
-
-    public User(String phone, String email) {
+    public User(String name, String phone, String email) {
+        this.name = name;
         this.phone = phone;
         this.email = email;
     }
@@ -36,6 +38,10 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
     public String getPhone() {
         return phone;
@@ -59,5 +65,11 @@ public class User {
 
     public void setWallets(List<Wallet> wallets) {
         this.wallets = wallets;
+    }
+
+    public void copy(User userForm) {
+        this.setName(userForm.getName());
+        this.setPhone(userForm.getPhone());
+        this.setEmail(userForm.getEmail());
     }
 }

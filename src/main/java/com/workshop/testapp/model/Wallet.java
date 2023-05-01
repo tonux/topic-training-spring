@@ -13,7 +13,7 @@ public class Wallet {
 
     private String name;
 
-    private Double balance;
+    private float balance;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -25,7 +25,7 @@ public class Wallet {
     public Wallet() {
     }
 
-    public Wallet(String name, Double balance) {
+    public Wallet(String name, float balance) {
         this.name = name;
         this.balance = balance;
     }
@@ -46,11 +46,11 @@ public class Wallet {
         this.name = name;
     }
 
-    public Double getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 
@@ -68,5 +68,14 @@ public class Wallet {
 
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
+    }
+
+    public Wallet orElseThrow(Object walletNotFound) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void copy(Wallet walletForm) {
+        this.setName(walletForm.getName());
+        this.setBalance(walletForm.getBalance());
     }
 }
