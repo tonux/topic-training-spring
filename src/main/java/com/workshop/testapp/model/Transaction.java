@@ -1,5 +1,6 @@
 package com.workshop.testapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn(name = "wallet_id")
+    @JsonIgnore
     private Wallet wallet;
 
     public Transaction() {
