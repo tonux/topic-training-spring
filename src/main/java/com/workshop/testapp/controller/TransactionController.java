@@ -1,6 +1,6 @@
 package com.workshop.testapp.controller;
 
-import com.workshop.testapp.model.Transaction;
+import com.workshop.testapp.domain.Transaction;
 import com.workshop.testapp.services.TransactionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

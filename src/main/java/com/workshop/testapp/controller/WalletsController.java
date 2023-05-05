@@ -1,7 +1,7 @@
 package com.workshop.testapp.controller;
 
-import com.workshop.testapp.model.User;
-import com.workshop.testapp.model.Wallet;
+import com.workshop.testapp.domain.User;
+import com.workshop.testapp.domain.Wallet;
 import com.workshop.testapp.repositories.UserRepository;
 import com.workshop.testapp.services.WalletService;
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,9 @@
 package com.workshop.testapp.rest;
 
-import com.workshop.testapp.model.User;
+import com.workshop.testapp.domain.User;
+import com.workshop.testapp.model.UserDTO;
 import com.workshop.testapp.services.UserService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/api/users", produces = "application/json")
+@RequestMapping("/api/users")
 public class UserResource {
 
     // GET /api/users
@@ -33,12 +35,15 @@ public class UserResource {
     }
 
     @GetMapping("/{id}")
+    @ApiResponse(responseCode = "200", description = "Return user by id")
     public ResponseEntity<User> getUserById(Long id) {
-        return ResponseEntity.ok(userService.getUserById(id));
+        var response = userService.getUserById(id);
+        return response == null? ResponseEntity.notFound().build() : ResponseEntity.ok(response);
     }
 
     @PostMapping
-    public ResponseEntity<Long> createUser(User user) {
+    @ApiResponse(responseCode = "201", description = "User created")
+    public ResponseEntity<Long> createUser(UserDTO user) {
         return new ResponseEntity<>(userService.createUser(user).getId(), HttpStatus.CREATED);
     }
 }

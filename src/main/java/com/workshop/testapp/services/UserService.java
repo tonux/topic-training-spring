@@ -1,6 +1,7 @@
 package com.workshop.testapp.services;
 
-import com.workshop.testapp.model.User;
+import com.workshop.testapp.domain.User;
+import com.workshop.testapp.model.UserDTO;
 import com.workshop.testapp.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,8 @@ public class UserService {
     }
 
     //create user
-    public User createUser(User user) {
-       return userRepository.save(user);
+    public User createUser(UserDTO user) {
+       return userRepository.save(mapToEntity(user));
     }
 
     //get all users
@@ -57,5 +58,25 @@ public class UserService {
 
     public void updateUser(User user) {
         userRepository.save(user);
+    }
+
+    private UserDTO mapToDTO(final User user){
+        UserDTO userDto = new UserDTO();
+        userDto.setId(user.getId());
+        userDto.setName(user.getName());
+        userDto.setPhone(user.getPhone());
+        userDto.setEmail(user.getEmail());
+
+        return userDto;
+    }
+
+    private User mapToEntity(final UserDTO userDto){
+        User user = new User();
+        user.setId(userDto.getId());
+        user.setName(userDto.getName());
+        user.setPhone(userDto.getPhone());
+        user.setEmail(userDto.getEmail());
+
+        return user;
     }
 }

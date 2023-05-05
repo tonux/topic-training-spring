@@ -1,4 +1,4 @@
-package com.workshop.testapp.model;
+package com.workshop.testapp.domain;
 
 import jakarta.persistence.*;
 
@@ -16,6 +16,9 @@ public class User {
     private String name;
     @Column(nullable = false, unique = true, name = "phone_number")
     private String phone;
+
+    @Column
+    private String password;
 
     @Column(nullable = false)
     private String email;
@@ -66,6 +69,10 @@ public class User {
     public void setWallets(List<Wallet> wallets) {
         this.wallets = wallets;
     }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
 
     public void copy(User userForm) {
         this.setName(userForm.getName());
