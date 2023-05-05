@@ -1,8 +1,8 @@
 package com.workshop.testapp.controller;
 
-import com.workshop.testapp.model.User;
+import com.workshop.testapp.domain.User;
+import com.workshop.testapp.model.UserDTO;
 import com.workshop.testapp.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -52,7 +52,7 @@ public class UserController {
 
     //Ajouter un utilisateur
     @PostMapping("/add")
-    public String add(@ModelAttribute("user") User user) {
+    public String add(@ModelAttribute("user") UserDTO user) {
         userService.createUser(user);
         return "redirect:/list";
     }

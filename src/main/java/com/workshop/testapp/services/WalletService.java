@@ -1,7 +1,6 @@
 package com.workshop.testapp.services;
 
-import com.workshop.testapp.model.Wallet;
-import com.workshop.testapp.repositories.UserRepository;
+import com.workshop.testapp.domain.Wallet;
 import com.workshop.testapp.repositories.WalletRepository;
 import org.springframework.stereotype.Service;
 

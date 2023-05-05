@@ -1,4 +1,4 @@
-package com.workshop.testapp.model;
+package com.workshop.testapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

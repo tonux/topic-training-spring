@@ -1,6 +1,6 @@
 package com.workshop.testapp.services;
 
-import com.workshop.testapp.model.Transaction;
+import com.workshop.testapp.domain.Transaction;
 import com.workshop.testapp.repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
 

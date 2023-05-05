@@ -1,15 +1,13 @@
 package com.workshop.testapp;
 
-import com.workshop.testapp.model.Transaction;
-import com.workshop.testapp.model.User;
-import com.workshop.testapp.model.Wallet;
+import com.workshop.testapp.domain.Transaction;
+import com.workshop.testapp.domain.User;
+import com.workshop.testapp.domain.Wallet;
 import com.workshop.testapp.repositories.TransactionRepository;
 import com.workshop.testapp.repositories.UserRepository;
 import com.workshop.testapp.repositories.WalletRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 public class DatabaseInitializer {

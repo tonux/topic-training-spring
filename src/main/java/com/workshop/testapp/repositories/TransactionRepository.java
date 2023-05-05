@@ -1,6 +1,6 @@
 package com.workshop.testapp.repositories;
 
-import com.workshop.testapp.model.Transaction;
+import com.workshop.testapp.domain.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
