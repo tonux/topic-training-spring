@@ -1,7 +1,11 @@
 package com.workshop.testapp.services;
 
+import com.workshop.testapp.config.jwt.JwtService;
 import com.workshop.testapp.domain.Role;
 import com.workshop.testapp.domain.User;
+import com.workshop.testapp.model.AuthLoginDto;
+import com.workshop.testapp.model.AuthRegisterDto;
+import com.workshop.testapp.model.AuthResponseDto;
 import com.workshop.testapp.repositories.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,37 +20,53 @@ public class AuthService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final AuthenticationManager authentificationManager;
+    private final AuthenticationManager authenticationManager;
 
-    public AuthService(UserRepository userRepository, AuthenticationManager authentificationManager, PasswordEncoder passwordEncoder) {
+    private final JwtService jwtService;
+
+    public AuthService(UserRepository userRepository, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder,
+                       JwtService jwtService) {
         this.userRepository = userRepository;
-        this.authentificationManager = authentificationManager;
+        this.authenticationManager = authenticationManager;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     // auth register
-    public String register(String username, String password) {
-        if(userRepository.findByUsername(username).isPresent()){
+    public AuthResponseDto register(AuthRegisterDto authRegisterDto) {
+        if(userRepository.findByUsername(authRegisterDto.getUsername()).isPresent()){
             throw new RuntimeException("Username already exist");
         }
 
         User user = new User();
         user.setRole(Role.USER);
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
+        user.setName(authRegisterDto.getName());
+        user.setEmail(authRegisterDto.getEmail());
+        user.setPhone(authRegisterDto.getPhone());
+        user.setUsername(authRegisterDto.getUsername());
+        user.setPassword(passwordEncoder.encode(authRegisterDto.getPassword()));
 
         userRepository.save(user);
-        return null;
+
+        var jwtToken = jwtService.generateToken(user);
+        AuthResponseDto authResponseDto = new AuthResponseDto();
+        authResponseDto.setToken(jwtToken);
+        authResponseDto.setUser(user.toUserDTO());
+        return authResponseDto;
     }
 
     // auth login
-    public User login(String username, String password) {
+    public AuthResponseDto login(AuthLoginDto authLoginDto) {
 
-        Authentication authentication = authentificationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(username, password)
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(authLoginDto.getUsername(), authLoginDto.getPassword())
         );
 
         User user = (User) authentication.getPrincipal();
-        return user;
+
+        AuthResponseDto authResponseDto = new AuthResponseDto();
+        authResponseDto.setToken(jwtService.generateToken(user));
+        authResponseDto.setUser(user.toUserDTO());
+        return authResponseDto;
     }
 }
