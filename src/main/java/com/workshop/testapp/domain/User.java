@@ -1,7 +1,9 @@
 package com.workshop.testapp.domain;
 
+import com.workshop.testapp.model.UserDTO;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
@@ -83,7 +85,7 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     public String getPassword() { return password; }
@@ -123,11 +125,20 @@ public class User implements UserDetails, Serializable {
 
     public void setUsername(String username) { this.username = username; }
 
-    public String getUsernames() { return username; }
-
     public void copy(User userForm) {
         this.setName(userForm.getName());
         this.setPhone(userForm.getPhone());
         this.setEmail(userForm.getEmail());
+        this.setUsername(userForm.getUsername());
+        this.setPassword(userForm.getPassword());
+    }
+
+    public UserDTO toUserDTO() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(this.getId());
+        userDTO.setName(this.getName());
+        userDTO.setPhone(this.getPhone());
+        userDTO.setEmail(this.getEmail());
+        return userDTO;
     }
 }

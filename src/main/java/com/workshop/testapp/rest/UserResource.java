@@ -6,6 +6,7 @@ import com.workshop.testapp.services.UserService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/admin/users")
+@PreAuthorize("hasAnyAuthority('ADMIN', 'AGENT', 'USER')")
 public class UserResource {
 
     // GET /api/users
@@ -29,6 +31,7 @@ public class UserResource {
         this.userService = userService;
     }
 
+
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
@@ -41,6 +44,7 @@ public class UserResource {
         return response == null? ResponseEntity.notFound().build() : ResponseEntity.ok(response);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     @ApiResponse(responseCode = "201", description = "User created")
     public ResponseEntity<Long> createUser(UserDTO user) {
