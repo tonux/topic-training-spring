@@ -13,6 +13,15 @@ public class UserDTO {
 
     private String email;
 
+    public UserDTO() {
+    }
+
+    public UserDTO(String name, String phone, String email) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }
