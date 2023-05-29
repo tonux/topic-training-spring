@@ -31,26 +31,47 @@ class UserRepositoryTest {
     @Test
     void findByPhone() {
         //Given
-        userRepository.save(new User("Diop", "12345678", "amadou@gmail.com" ));
+        userRepository.save(new User("Ba", "1234566565", "aissatou@gmail.com" ));
         // When
-        User user = userRepository.findByPhone("12345678");
+        User user = userRepository.findByPhone("1234566565");
 
         // Then
         assertNotNull(user);
-        assertEquals("Diop", user.getName());
-        assertEquals("amadou@gmail.com", user.getEmail());
+        assertEquals("Ba", user.getName());
+        assertEquals("aissatou@gmail.com", user.getEmail());
 
     }
 
-    // @Test
+    @Test
     void findByEmail() {
         //TODO : implement this test
+        //Given
+        userRepository.save(new User("Fall", "5646513215", "modou@gmail.com" ));
+        // When
+        User user = userRepository.findByEmail("modou@gmail.com");
+
+        // Then
+        assertNotNull(user);
+        assertEquals("Fall", user.getName());
+        assertEquals("5646513215", user.getPhone());
+
+
     }
 
-    //@Test
-    void findByUsername() {
+    @Test
+    void findByName() {
 
         //TODO : implement this test
+        //Given
+        userRepository.save(new User("Diop", "12345678", "amadou@gmail.com" ));
+        // When
+        User user = userRepository.findByName("Diop");
+
+        // Then
+        assertNotNull(user);
+        assertEquals("12345678", user.getPhone());
+        assertEquals("amadou@gmail.com", user.getEmail());
+
     }
 
     private String randomPhone(){

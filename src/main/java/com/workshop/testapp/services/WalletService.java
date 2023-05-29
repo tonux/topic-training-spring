@@ -43,10 +43,7 @@ public class WalletService {
         walletRepository.deleteById(id);
     }
 
-    public List<Wallet> getUserWalletsById(Long id) {
-        List walletList = walletRepository.findAllById(id);
-        return walletList;
-    }
+
 
     public List<Wallet> getUserWalletsByUserId(Long id) {
         List walletList = walletRepository.findAllByUserId(id);

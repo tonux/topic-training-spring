@@ -9,6 +9,7 @@ class WalletServiceTest {
 
     @BeforeEach
     void setUp() {
+
     }
 
     @Test
