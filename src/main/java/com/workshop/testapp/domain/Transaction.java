@@ -18,6 +18,17 @@ public class Transaction {
 
     private LocalDate date;
 
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", amount=" + amount +
+                ", date=" + date +
+                ", wallet=" + wallet +
+                '}';
+    }
+
     @ManyToOne
     @JoinColumn(name = "wallet_id")
     @JsonIgnore
