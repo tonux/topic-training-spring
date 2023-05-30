@@ -5,7 +5,6 @@ import com.workshop.testapp.model.UserDTO;
 import com.workshop.testapp.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,8 +29,9 @@ public class UserService {
     }
 
     //update user by id
-    public void updateUserById(Long id) {
+    public User updateUserById(Long id, UserDTO user) {
         userRepository.findById(id);
+        return userRepository.save(mapToEntity(user));
     }
 
     //get user by id
@@ -41,13 +41,13 @@ public class UserService {
     }
 
     //get user by phone
-    public void getUserByPhone(String phone) {
-        userRepository.findByPhone(phone);
+    public User getUserByPhone(String phone) {
+        return userRepository.findByPhone(phone);
     }
 
     //get user by email
-    public void getUserByEmail(String email) {
-        userRepository.findByEmail(email);
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     public void deleteUser(Long id) {
@@ -57,8 +57,9 @@ public class UserService {
         userRepository.delete(user);
     }
 
-    public void updateUser(User user) {
+    public User updateUser(User user) {
         userRepository.save(user);
+        return user;
     }
 
     private UserDTO mapToDTO(final User user){
